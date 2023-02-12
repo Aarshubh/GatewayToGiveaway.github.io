@@ -8,6 +8,9 @@
     <title>GTG | Gateway To Giveaway</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+     <link rel="stylesheet" type="text/css" href="evo-calendar.css"/>
+        <link rel="stylesheet" type="text/css" href="evo-calendar.midnight-blue.css"/>
+         <link rel="stylesheet" type="text/css" href="evo-calendar.royal-navy.css"/>
 </head>
 
 <body>
@@ -95,42 +98,44 @@
                 </a>
                 
             </div>
-            <div class="col-4">
-                <a href="services.html" >
-                <img src="images/blank 1.jpg" alt="" />
-                <h4>NGO 1</h4>
-                </a>
-               
-                   
-                </div>
+            
                
             </div>
            
         </div>
     </div>
-    <h2 class="title">Our Team</h2>
+   
     <div class="offer">
         <div class="small-container">
-            <div class="row">
-                <div class="col-2">
-                    <img src="images/guide.jpeg" alt="" class="offer-img" />
-                </div>
-                <div class="col-2">
-                    <p><b>Our Guide</b>
-                    <h1>Mr. Satyam Dubey</h1>
-                    <small>
-                        With the guidance of beloved sir we are making this project to make change in the society 
-                        to bring the smile on the faces of needy people.
-                    </small>
-                    
-                </div>
-            </div>
+           
+           <div class="hero">
+       
+        <div id="calendar"></div>
+        </div>
+           
+           
+           
+           
+           
         </div>
     </div>
-
+ <h2 class="title">Our Team</h2>
     <div class="testimonial">
         <div class="small-container">
             <div class="row">
+            <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>
+                      With the guidance of beloved sir we are making this project to make change in the society 
+                        to bring the smile on the faces of needy people.
+                    </p>
+                    <div class="rating">
+                       
+                    </div>
+                    <img src="images/guide.jpeg" alt="">
+                    <h3>Mr. Satyam Dubey</h3>
+                </div>
+                <br>
                 <div class="col-3">
                     <i class="fa fa-quote-left"></i>
                     <p>
@@ -154,7 +159,7 @@
                     <h3>Mr. Shariq Shamim</h3>
                 </div>
                 <div class="col-3">
-                    
+                    <i class="fa fa-quote-left"></i>
                     <p>
                        Server-side developer 
                     </p>
@@ -167,7 +172,7 @@
             </div>
         </div>
     </div>
-
+ <h2 class="title">Connect with us </h2>
     <div class="brands">
         <div class="small-container">
             <div class="row">
@@ -229,6 +234,36 @@
             <p class="copyright">Copyright &copy; 2022 - www.gtg.com</p>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="evo-calendar.js"></script>
+
+        <script>
+       
+        $(document).ready(function() {
+            $('#calendar').evoCalendar({
+            	theme:"Midnight Blue",
+            	calendarEvents: [
+            	      {
+            	        id: 'e1', // Event's ID (required)
+            	        name: "New Year", // Event name (required)
+            	        date: "January/1/2020", // Event date (required)
+            	        type: "holiday", // Event type (required)
+            	        everyYear: true // Same event every year (optional)
+            	      },
+            	      {
+            	        name: "Vacation Leave",
+            	        badge: "02/13 - 02/15", // Event badge (optional)
+            	        date: ["February/13/2020", "February/15/2020"], // Date range
+            	        description: "Vacation leave for 3 days.", // Event description (optional)
+            	        type: "event",
+            	        color: "#63d867" // Event custom color (optional)
+            	      }
+            	    ]
+              
+            })
+        })
+        </script>
+    
 
 
     <script>

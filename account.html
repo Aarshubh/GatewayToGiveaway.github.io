@@ -53,16 +53,16 @@
                             <span onclick="register()">Sign up</span>
                             <hr id="Indicator">
                         </div>
-                        <form id="LoginForm">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
+                        <form id="LoginForm" method="post" action="login">
+                            <input type="text" placeholder="Email" name="Username">
+                            <input type="password" placeholder="Password" name="Password">
                             <button type="submit" class="btn">Login</button>
                             <a href="">Forgot Password</a>
                         </form>
-                        <form id="RegForm">
-                            <input type="text" placeholder="Username">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
+                        <form id="RegForm"method="post" action="registration">
+                            <input type="text" placeholder="Username" name="Username">
+                            <input type="email" placeholder="Email" name="Email">
+                            <input type="password" placeholder="Password" name="Password">
                             <button type="submit" class="btn">Sign Up</button>
                         </form>
                     </div>
