@@ -1,0 +1,137 @@
+package portal.donor;
+import portal.dbtask.*;
+import java.sql.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class DonorRegistration
+ */
+@WebServlet("/DonorRegistration")
+public class DonorRegistration extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	private Connection con;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DonorRegistration() {
+        super();
+        // TODO Auto-generated constructor 
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String d_id=request.getParameter("id");//binded variable name
+		System.out.println("donor_id send via ajax "+d_id);
+		
+		con=DbConnection.createConnection();
+		
+		String strsql="select donor_id from donor where donor_id=?";
+		
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		try {
+			ps=con.prepareStatement(strsql);
+			ps.setString(1, d_id);
+			rs=ps.executeQuery();
+			if(rs.next())
+			{
+				response.setContentType("text/html");
+				PrintWriter out=response.getWriter();
+				out.print("Donor ID Already Exists");
+			}
+			
+		}
+		catch(SQLException se)
+		{
+			se.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+
+
+           String userid = request.getParameter("txtuserid");
+           String pass = request.getParameter("txtuserpass");
+           String name = request.getParameter("txtname");
+           String age = request.getParameter("txtage");
+           String email = request.getParameter("txtemail");
+           String phone = request.getParameter("txtphone");
+           String blood = request.getParameter("cmbgroup");
+           String gender = request.getParameter("radiobtn");
+           String city = request.getParameter("cmbcity");
+           String status=request.getParameter("checkbox");
+
+
+           
+           con=DbConnection.createConnection();
+           System.out.println(con);
+           
+           
+           String strinsert="insert into donor(donor_id, password, name, email, phone, gender, age, bloodgroup, city, status, date)values(?,?,?,?,?,?,?,?,?,?,?)";
+           
+           java.util.Date  d= new  java.util.Date();   //it will return current date
+           
+           Long dt=d.getTime();     //it will give long value of todays date
+           
+           java.sql.Date sd = new java.sql.Date(dt);    //util date gets converted into sql date  by creating Date class object of sql package
+           
+           PreparedStatement ps = null;
+           
+           
+             try {
+            	 ps=con.prepareStatement(strinsert);
+           	     ps.setString(1, userid);
+           	     ps.setString(2, pass);
+           	     ps.setString(3, name);
+             	 ps.setString(4, email);
+            	 ps.setString(5, phone);
+           	     ps.setString(6, gender);
+            	 ps.setInt(7, Integer.parseInt(age));
+            	 ps.setString(8, blood);
+            	 ps.setString(9, city);    
+            	 ps.setString(10, status);     
+            	 ps.setDate(11, sd);
+            	 System.out.println(ps);
+            	 
+            	 
+            	 int success_status=ps.executeUpdate();
+            	 
+            	 if(success_status>0) {
+                     
+            		 
+            		 System.out.println("Registration Done");
+            		 request.setAttribute("message", "Thanks for your registration...");
+            		 RequestDispatcher rd = request.getRequestDispatcher("/JSP/registrationform.jsp");
+            		 rd.forward(request, response);
+
+            	 }
+            	            	 
+             }
+                          
+             catch(SQLException se)
+             {
+            	 se.printStackTrace();
+             }
+
+}
+
+}
