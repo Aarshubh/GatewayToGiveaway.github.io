@@ -70,15 +70,7 @@ function displaylist()
 }
 
 function showform(){
-var inp=`<form id="RegForm"method="post" >
-                            <input type="text" placeholder="NGO Name" name="Username" id="name">
-                            <input type="email" placeholder="Email" name="Email">
-                            
-                           <input type="text" placeholder="NGO Description" name="desc" id="desc">
-                            
-                           
-                            <button type="button"  id="adde" >adding</button>
-                        </form>`
+var inp=
                         document.getElementById("myloc").innerHTML=inp;
                         var MenuItems = document.getElementById("regg");
 
